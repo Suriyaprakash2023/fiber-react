@@ -1,0 +1,138 @@
+<!doctype html>
+
+<html class="no-js" lang="en">
+ <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>
+      Fibernet Broadband Plans in Chennai | Broadband Offers in Chennai
+    </title>
+    <meta
+      name="description"
+      content="One of the leading Fibernet Broadband Plans in Chennai. Call : 9087001153 to get latest Fibernet Broadband Offers."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="/src/assets/img/favicon.png" />
+    <link rel="canonical" href="" />
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="/src/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/src/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/src/assets/css/animate.min.css" />
+    <link rel="stylesheet" href="/src/assets/css/magnific-popup.css" />
+    <link rel="stylesheet" href="/src/assets/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="/src/assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="/src/assets/css/jquery.flipster.css" />
+    <link rel="stylesheet" href="/src/assets/css/jquery-ui.css" />
+    <link rel="stylesheet" href="/src/assets/css/flaticon.css" />
+    <link rel="stylesheet" href="/src/assets/css/odometer.css" />
+    <link rel="stylesheet" href="/src/assets/css/slick.css" />
+    <link rel="stylesheet" href="/src/assets/css/default.css" />
+    <link rel="stylesheet" href="/src/assets/css/style.css" />
+    <link rel="stylesheet" href="/src/assets/css/responsive.css" />
+  </head>
+  <body>
+    <main>
+      <div id="root"></div>
+    </main>
+    <script type="module" src="/src/main.jsx"></script>
+    <!-- JS here -->
+    <script src="/src/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/src/assets/js/bootstrap.min.js"></script>
+    <script src="/src/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="/src/assets/js/owl.carousel.min.js"></script>
+    <script src="/src/assets/js/jquery.odometer.min.js"></script>
+    <script src="/src/assets/js/jquery.appear.js"></script>
+    <script src="/src/assets/js/jquery.flipster.min.js"></script>
+    <script src="/src/assets/js/jquery-ui.min.js"></script>
+    <script src="/src/assets/js/jarallax.min.js"></script>
+    <script src="/src/assets/js/slick.min.js"></script>
+    <script src="/src/assets/js/wow.min.js"></script>
+    <script src="/src/assets/js/main.js"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17426266151">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17426266151');
+</script>
+
+
+<script>
+$(document).ready(function () {
+    $("#enquiryForm").submit(function (event) {
+        event.preventDefault();  // prevent form reload
+
+        const csrftoken = $("input[name='csrfmiddlewaretoken']").val();
+
+        $("#submitText").hide();
+        $("#loadingSpinner").show();
+        $("#submitBtn").prop("disabled", true);
+
+        $.ajax({
+            url: "/submit-enquiry/", // your Django form URL
+            type: "POST",
+            data: $(this).serialize(),
+            headers: {
+                "X-CSRFToken": csrftoken
+            },
+            success: function (response) {
+                console.log("Server Response:", response);  // Debug log
+
+                if (response.status === 'success') {
+                    $("#loadingSpinner").hide();
+                    $("#submitBtn").prop("disabled", false);
+                    $("#enquiryForm")[0].reset();
+
+                    // ✅ Hide popup
+                    $("#contact-popup").fadeOut();
+
+                    // ✅ Redirect to thank you page
+                    setTimeout(function () {
+                        window.location.href = "/thankyou/";
+                    }, 500);
+                } else {
+                    alert("Error: " + response.message);
+                    $("#loadingSpinner").hide();
+                    $("#submitText").show();
+                    $("#submitBtn").prop("disabled", false);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log("AJAX Error:", error);
+                alert("Submission failed: " + error);
+                $("#loadingSpinner").hide();
+                $("#submitText").show();
+                $("#submitBtn").prop("disabled", false);
+            }
+        });
+    });
+});
+</script>
+
+  </body>
+  <style>
+    .form-control {
+      display: block;
+      width: 100%;
+      height: calc(1.5em + 0.75rem + 2px);
+      padding: 0.375rem 0.75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      border: none;
+      color: #495057;
+      background-color: #fff;
+      background-clip: padding-box;
+      border-bottom: 1px solid #ced4da;
+      border-radius: 0.25rem;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+  </style>
+</html>
+
