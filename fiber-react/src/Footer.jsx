@@ -1,7 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import whatsapp from '/src/assets/img/whatsapp.gif'
+import call from '/src/assets/img/call.gif'
 const Footer = () => {
+  const phoneNumber = "919087001153";
+  const message = "Hello, I need some information. Please contact me";
+  const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+
   return (
     <>
       {/*  */}
@@ -98,15 +103,15 @@ const Footer = () => {
       </footer>
       {/* footer-area-end */}
       <a
-        href="https://api.whatsapp.com/send?phone=+919087001153&amp;text=Hello%2C%20I%20need%20some%20informations.%2C%20Please%20Contact%20me"
+         href={url}
         target="_blank"
         className="whatsapp_button"
       >
-        <img src="/src/assets/img/whatsapp.gif" style={{width:"80%"}} />
+        <img src={whatsapp} style={{width:"80%"}} />
       </a>
 
       <a href="tel:+919087001153" target="_blank" className="call_button">
-        <img src="/src/assets/img/call.gif" style={{width:"36%"}} />
+        <img src={call} style={{width:"36%"}} />
       </a>
     </>
   )
