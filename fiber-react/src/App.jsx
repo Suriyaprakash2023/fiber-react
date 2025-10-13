@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from './Footer'
 import Header from './Header'
 import Home from './Home'
+import About from './About'
+import Airtel from './Airtel'
+import Contact from './Contact'
 
 function App() {
 
@@ -12,7 +15,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/shop/" element={<Shop />} /> */}
+          <Route path="/about/" element={<About />} />
+          <Route path="/airtel/" element={<Airtel />} />
+          <Route path="/contact/" element={<Contact />} />
 
 
 

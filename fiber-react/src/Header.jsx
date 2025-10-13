@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <>
@@ -79,19 +79,19 @@ const Header = () => {
                   <div className="navbar-wrap main-menu d-lg-flex">
                     <ul className="navigation">
                       <li className="d-none d-lg-flex active">
-                        <a href="{% url 'index' %}">Home</a>
+                        <Link to="/" >Home</Link>
                       </li>
                       <li className="d-none d-lg-flex">
-                        <a href="{% url 'about' %}">About</a>
+                        <Link to="/about">About</Link>
                       </li>
 
-                      <li><a href="{% url 'airtel' %}">Airtel Plans</a></li>
+                      <li><Link to="/airtel">Airtel Plans</Link></li>
                       {/* <li><a href="{% url 'act' %}">Act Plans</a></li>
 											<li><a href="{% url 'hathway' %}">Hathway  Plans</a></li>
                                              */}
 
                       <li className="d-none d-lg-flex">
-                        <a href="{% url 'contact' %}">contact</a>
+                        <Link to="/contact" >contact</Link>
                       </li>
                     </ul>
                   </div>

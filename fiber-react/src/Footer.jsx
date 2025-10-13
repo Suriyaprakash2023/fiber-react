@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -40,9 +41,9 @@ const Footer = () => {
                     <h4 className="title">Company</h4>
                   </div>
                   <ul className="fw-list">
-                    <li><a href="{% url 'about">About</a></li>
-                    <li><a href="{% url 'index">Plans</a></li>
-                    <li><a href="{% url 'contact">Contact</a></li>
+                    <li><Link to='/about' >About</Link></li>
+                    <li><Link to='/' >Plans</Link></li>
+                    <li><Link to='/contact' >Contact</Link></li>
                   </ul>
                 </div>
               </div>
@@ -52,7 +53,7 @@ const Footer = () => {
                     <h4 className="title">Top Brands</h4>
                   </div>
                   <ul className="fw-list">
-                    <li><a href="{% url 'airtel">Airtel Plans</a></li>
+                    <li><Link to='/airtel'>Airtel Plans</Link></li>
                     {/* <li><a href="">Hathway Plans</a></li>
                   <li><a href="">ACT Plans</a></li>*/}
                 </ul> 
@@ -77,11 +78,10 @@ const Footer = () => {
               <hr className="mt-15" />
               <div className="col-md-4">
                 <div className="footer-logo">
-                  <a href="{% url 'index"
-                  ><p className="logo-box">
+                  <Link to='/'><p className="logo-box">
                       Fibernet Broadband Connection Chennai
-                    </p></a
-                  >
+                    </p>
+                  </Link>
                 </div>
               </div>
               <div className="col-md-8">

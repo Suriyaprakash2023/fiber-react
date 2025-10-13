@@ -1,11 +1,27 @@
-import React from 'react'
+import React,{useState } from 'react'
+import banner_bg from '/src/assets/img/slider/banner_bg.jpg'
+import { Link } from 'react-router-dom';
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setIsSuccess(false);
+
+    // Simulate async action (e.g., API call)
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsSuccess(true);
+    }, 2000);
+  };
   return (
     <>
       {/*  */}
       {/* banner-area */}
-      <section className="banner-area banner-bg" data-background="{% static 'img/slider/banner_bg.jpg' %}">
+      <section className="banner-area banner-bg" style={{ backgroundImage: `url(${banner_bg})` }} data-background={banner_bg}>
         <div className="container">
           <div className="row">
 
@@ -39,15 +55,43 @@ const Home = () => {
                     {/*<div className="alert alert-success message success1" style="display:none;">Thank You, we'll get back you soon. </div>
 											<div className="alert alert-danger message failure1" style="display:none;">Sorry, Please try again </div> */}
                     {/* Submit button */}
-                    <button type="submit" className="mt-2 sbbtn d-flex justify-content-center align-items-center" id="submitBtn"  style={{ width: '100%', borderRadius: 0 }} >
-                      <span id="submitText">Enquiry Now!</span>
-                      <div id="loadingSpinner" className="spinner-border text-light" style={{ display: 'none', width: '1.5rem', height: '1.5rem', marginLeft: '10px' }} >
-                        <span className="visually-hidden">Processing...</span>
-                      </div>
-                      <div id="successMessage" style={{ display: 'none', color: 'white', fontSize: '20px', marginLeft: '10px' }}>
-                        <i className="bi bi-check-circle"  style={{color:"white"}}></i> Success
-                      </div>
-                    </button>
+                    <button
+                        type="submit"
+                        className="mt-2 sbbtn d-flex justify-content-center align-items-center"
+                        id="submitBtn"
+                        style={{ backgroundColor:'green',border:'none',width: '100%', borderRadius: 0 }}
+                        onClick={handleSubmit}
+                        >
+                        {!isLoading && !isSuccess && (
+                            <span className='text-light' id="submitText">Enquiry Now!</span>
+                        )}
+
+                        {isLoading && (
+                            <div
+                            id="loadingSpinner"
+                            className="spinner-border text-light"
+                            style={{ width: '1.5rem', height: '1.5rem', marginLeft: '10px' }}
+                            >
+                            <span className="visually-hidden">Processing...</span>
+                            </div>
+                        )}
+
+                        {isSuccess && (
+                            <div
+                            id="successMessage"
+                            style={{
+                                color: 'white',
+                                fontSize: '20px',
+                                marginLeft: '10px',
+                                display: 'flex',
+                                alignItems: 'center',
+                            }}
+                            >
+                            <i className="bi bi-check-circle" style={{ color: 'white' }}></i>
+                            <span style={{ marginLeft: '5px' }}>Success</span>
+                            </div>
+                        )}
+                        </button>
 
                   </form>
                 </div>
@@ -85,7 +129,7 @@ const Home = () => {
           </div>
           <div className="row justify-content-center">
             <div className="col-xl-3 col-lg-4 col-md-6 col-10">
-              <a href="{% url 'airtel' %}">   <div className="services-item">
+              <a href="">   <div className="services-item">
                 <div className="services-icon">
                   <ul className="devices-icon-wrap">
                     <li><i className="flaticon-tv"></i></li>
@@ -95,12 +139,12 @@ const Home = () => {
                   </ul>
                 </div>
                 <div className="services-content">
-                  <h3 className="title text-center"><a href="{% url 'airtel' %}">Airtel Plans</a></h3>
+                  <h3 className="title text-center"><Link to='/airtel'>Airtel Plans</Link></h3>
                 </div>
               </div></a>
             </div>
             <div className="col-xl-3 col-lg-4 col-md-6 col-10">
-              <a href="{% url 'act' %}"> <div className="services-item">
+              <a href=""> <div className="services-item">
                 <div className="services-icon">
                   <ul className="devices-icon-wrap">
                     <li><i className="flaticon-tv"></i></li>
@@ -221,7 +265,7 @@ const Home = () => {
                             </div>
                         </div>
 						<div className="subscribe-plan justify-content-center">
-							<a href="{% url 'airtel' %}" className="btn transparent-btn emp text-decoration-none"> View All Airtel Plans</a>
+							<Link to='/airtel' className="btn transparent-btn emp text-decoration-none"> View All Airtel Plans</Link>
 							
 						</div>
                     </div >
