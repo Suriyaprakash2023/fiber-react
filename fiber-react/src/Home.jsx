@@ -1,22 +1,57 @@
 import React,{useState } from 'react'
 import banner_bg from '/src/assets/img/slider/banner_bg.jpg'
 import { Link } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setIsSuccess(false);
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsLoading(true);
+  setIsSuccess(false);
 
-    // Simulate async action (e.g., API call)
-    setTimeout(() => {
-      setIsLoading(false);
-      setIsSuccess(true);
-    }, 2000);
+  const form = document.getElementById('enquiryForm');
+  const formData = new FormData(form);
+
+  const data = {
+    name: formData.get('name'),
+    email: formData.get('email'),
+    mobile: formData.get('mobile'),
+    message: formData.get('message'),
   };
+
+  try {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbymbA1MTLlcYxfMbe2queysuQWpf2AdItVwf3kdVxE0r9EFWgUV8YY5qWOmc5ki-llzlw/exec", {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const result = await response.json();
+
+    if (result.result === 'success') {
+      toast.success('✅ Form submitted!');
+      form.reset();
+      setIsSuccess(true);
+    } else {
+      toast.error('❌ Submission failed.');
+    }
+  } catch (err) {
+    console.error('Submission error:', err);
+    toast.error('❌ Network error.');
+  } finally {
+    setIsLoading(false);
+  }
+};
+
+  
+
+
   return (
     <>
       {/*  */}
@@ -29,7 +64,7 @@ const Home = () => {
               <div className="banner-content">
                 <div className="formbg fadeInUp wow">
                   <h3><span>Enquiry Now to Get <br /> 15% Discount</span></h3>
-                  <form action="" id="enquiryForm airtelauth" method="POST" onSubmit="return false;" encytype="multipart/form-data" className="fadeInUp">
+                  <form  id="enquiryForm" onSubmit={handleSubmit}  className="fadeInUp">
 
                     {/* 2 column grid layout with text inputs for the first and last names */}
 
@@ -118,6 +153,7 @@ const Home = () => {
 
 
       {/* services-area */}
+      
       <section className="services-area pt-110 pb-90">
         <div className="container">
           <div className="row justify-content-center">
@@ -143,7 +179,7 @@ const Home = () => {
                 </div>
               </div></a>
             </div>
-            <div className="col-xl-3 col-lg-4 col-md-6 col-10">
+            {/* <div className="col-xl-3 col-lg-4 col-md-6 col-10">
               <a href=""> <div className="services-item">
                 <div className="services-icon">
                   <ul className="devices-icon-wrap">
@@ -157,7 +193,7 @@ const Home = () => {
                   <h3 className="title text-center"><a href="">ACT Plans</a></h3>
                 </div>
               </div></a>
-            </div>
+            </div> */}
             <div className="col-xl-3 col-lg-4 col-md-6 col-10">
               <a href=""> <div className="services-item">
                 <div className="services-icon">
@@ -656,7 +692,7 @@ const Home = () => {
             </div>
              brand-area-end */}
 
-
+     <ToastContainer position="top-center" autoClose={3000} />
     </>
   )
 }
